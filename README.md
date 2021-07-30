@@ -1,9 +1,9 @@
 <img src="https://bit.ly/2VnXWr2" alt="Ironhack Logo" width="100"/>
 
-# Title of My Project
-*[Your Name]*
+# An NLP Analysis on the Reviews of a restaurant Scrap from Tripadvisor
+*Laura Trapero*
 
-*[Your Cohort, Campus & Date]*
+**Data Analytics Bootcamp, May 2021, Remote**
 
 ## Content
 - [Project Description](#project-description)
@@ -19,54 +19,82 @@
 - [Links](#links)
 
 ## Project Description
-Write a short description of your project: 3-5 sentences about what your project is about, why you chose this topic (if relevant), and what you are trying to show.
 
-## Hypotheses / Questions
-* What data/business/research/personal question you would like to answer?
-* What is the context for the question and the possible scientific or business application?
-* What are the hypotheses you would like to test in order to answer your question?  
-Frame your hypothesis with statistical/data languages (i.e. define Null and Alternative Hypothesis). You can use formulas if you want but that is not required.
+Understanding customers’ feedback and knowing what your strengths and weaknesses are is key to any business.
+
+In this projects we will scrap from Tripadvisor the reviews from a sustainable restaurant in Amsterdam (De Kas) and use NLP to get quick and valuable insights. A model will be constructed to predict the score of the reviews, to help us understand the imporantance of the features on determinining weather a reviews is good or bad. 
+
+## Questions
+* How can a restaurant get valuable insights from their costumers reviews?
+* How are the features better valuated by costumers? 
+* Pinpoint possible problems and increase the deliver a more customized customer experience. 
+
 
 ## Dataset
-* Where did you get your data? If you downloaded a dataset (either public or private), describe where you downloaded it and include the command to load the dataset.
-* Did you build your own datset? If so, did you use an API or a web scraper? PRovide the relevant scripts in your repo.
-* For all types of datasets, provide a description of the size, complexity, and data types included in your dataset, as well as a schema of the tables if necessary.
-* If the question cannot be answered with the available data, why not? What data would you need to answer it better?
+* The data of the reviews was scrap from Tripadvisor. It has 1038 rows/reviews with its ID, Date, Score and Title.
+* It has no duplicates and the majority of the reviews are positive. There is a major class unbalanced on the Rated Score.
+*
 
 ## Cleaning
-Describe your full process of data wrangling and cleaning. Document why you chose to fill missing values, extract outliers, or create the variables you did as well as your reasoning behind the process.
+* Clean text for NLP methods:
+	- remove special characters
+	- remove extra spaces
+	- remove digits
+	- remove urls's
+	- convert to lower case
+
+* Pre-processing:
+	- Create a corpus
+	- Tokenization
+	- Lemmatization
+	- Remove non-meaningful words
+
+
+	- Classify reviews in:
+		-   positive reviews > 3
+		-   negative reviews < 3
+
+	- Down & up sampling 
 
 ## Analysis
-* Overview the general steps you went through to analyze your data in order to test your hypothesis.
-* Document each step of your data exploration and analysis.
-* Include charts to demonstrate the effect of your work.
-* If you used Machine Learning in your final project, describe your feature selection process.
+* Metrics as the lenght and number of characters are measure to include in the model.
+* A bag of words technic is used, frecuency of words, to be represented in a word cloud in positive and negative reviews.
+* TF-IDF ( Term Frequency- Inverse Dense Frequency) with ngrams 2 and 3 is calculated to obtain the most weighted words/combination of words accrording to the TF-IDF score. Those are used also to be entered in the model. 
+* Those words are used to analize content with more meaning when using 2-3 g to pintpoint useful customers feedback.
 
 ## Model Training and Evaluation
-*Include this section only if you chose to include ML in your project.*
-* Describe how you trained your model, the results you obtained, and how you evaluated those results.
+
+
+* Random forest models and logistic regression models for classification are implemented. Cross validation is used and the performance of the models is compare chaangind its hyperparamenters. 
+* The most frequent word obtaind from the words frecuency and TF-IDF are encoded accroding to the presence in each review(1,0), and added to the data frame to be able to train the model.
+* Models are trained with the 5 class of score and with scores transformed to binary variable (positive, no positive). 
+* The results are really bad. Bad predictions, with really low kappa values.
+* Predicts better the majority class
+ 
 
 ## Conclusion
-* Summarize your results. What do they mean?
-* What can you say about your hypotheses?
-* Interpret your findings in terms of the questions you try to answer.
+
+* We were able to gather lots of insights from the reviews.
+* Other models need to be applied.
+* More data need to be gather.
 
 ## Future Work
-Address any questions you were unable to answer, or any next steps or future extensions to your project.
 
-## Workflow
-Outline the workflow you used in your project. What were the steps?
-How did you test the accuracy of your analysis and/or machine learning algorithm?
+- Get more reviews from other sites like Yelp, google and local ones.
 
-## Organization
-How did you organize your work? Did you use any tools like a trello or kanban board?
+- Use more complex models and NN 
 
-What does your repository look like? Explain your folder and file structure.
+- Time Series Analysis
+
+- Themes Impact Analalysis
+
+- NLP on the Reviews Title
+
+- Embeding methods: represent reviews as vectors representation to be able to apply clustering algorithms to detect topic and other methods like Word2Vec Architecture Implementation (word representations in Vector Space )
+
 
 ## Links
-Include links to your repository, slides and trello/kanban board. Feel free to include any other links associated with your project.
 
 
-[Repository](https://github.com/)  
-[Slides](https://slides.com/)  
-[Trello](https://trello.com/en)  
+[Repository](https://github.com/lauratll/Final-Project-Bootcamp)   
+[Trello](https://trello.com/b/eKsF60Lz/final-project-bootcamp)  
